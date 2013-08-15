@@ -1,3 +1,4 @@
-Java Servlet Filter Example in Eclipse
+OpenID-Basic-Profile-Authentication
 
 Still under construction, the instructions will be released when the project is finished
+
