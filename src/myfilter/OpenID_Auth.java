@@ -49,19 +49,19 @@ public class OpenID_Auth implements javax.servlet.Filter {
     	System.out.println("Obtener el Parametros MAP " + req.getParameterMap() + "\n"); //Obtener el Parametros MAP {ZURI=[Ljava.lang.String;@31d5d0fc}
     	
     	    	    	
-    	//This are optional print commands, they can be erased
+    	/*/This are optional print commands, they can be erased
     	System.out.println("Arguments for the Do filter"+"\n");
     	System.out.println("req: "+ req );
     	System.out.println("res: "+res);
     	System.out.println("filterChain: "+filterChain+"\n");
     	System.out.println("Do Filter method inside"+"\n");
-    	/////////////////////////////////////////////////////////
+    	*/////////////////////////////////////////////////////////
     	HttpServletRequest httpReq   = (HttpServletRequest)req;
         HttpServletResponse httpRes  = (HttpServletResponse)res;
-        /////////////////////////////////////////////////////////
+        /*////////////////////////////////////////////////////////
         System.out.println("Http request: "+httpReq);
         System.out.println("http response: "+httpRes+"\n");
-        ////////////////////////////////////////////////////////       
+        *////////////////////////////////////////////////////////       
         HttpSession session = httpReq.getSession();
                 
         /* Optional parameters that can be printed for future versions       
@@ -125,7 +125,7 @@ public class OpenID_Auth implements javax.servlet.Filter {
         else if (httpReq.getParameterValues("ELCA123")!=null){
                   
         	// We simulate the GET method using this Redirect
-        	httpRes.sendRedirect(redirectPage+"authorize?response_type=code&client_id=ELCA123&redirect_uri=http%3A%2F%2F10.10.128.61%3A8080%2FComplete_Java_Filter_Example%2Fopenid%2F&scope=openid");
+        	httpRes.sendRedirect(redirectPage+"authorize?response_type=code&client_id=ELCA123&redirect_uri=http%3A%2F%2F10.10.128.58%3A8080%2FComplete_Java_Filter_Example%2Fopenid%2F&scope=openid");
             
             System.out.println("Send the request to the IDP (redirect page) " + httpRes +"\n");
         }
@@ -149,7 +149,7 @@ public class OpenID_Auth implements javax.servlet.Filter {
         	DataOutputStream cgiInput;
         	/////////////////////////////////// Here dont forget to write the IP or domain of the filter
         	res.setContentType(CONTENT_TYPE);
-        	String filter_url=URLEncoder.encode("http://10.10.128.61:8080/Complete_Java_Filter_Example/openid/", "UTF-8");
+        	String filter_url=URLEncoder.encode("http://10.10.128.58:8080/Complete_Java_Filter_Example/openid/", "UTF-8");
         	// URL of target page script.
         	
         	url = new URL(redirectPage+"token?grant_type=authorization_code&" + httpReq.getQueryString() + "&redirect_uri=" + filter_url);
@@ -178,7 +178,7 @@ public class OpenID_Auth implements javax.servlet.Filter {
         	
         	//This is the generation of the temporal HTML page that shows the token
         	//TODO Here according the basic profile, we just receive the token and it means that the user has access.
-        	//In order to make it more comlete you can increase the complexity receiving the token using an array and verifying the parts of the token.
+        	//In order to make it more complete you can increase the complexity receiving the token using an array and verifying the parts of the token.
         	//////////////////////////////////////////////////////////////////////////////////
         	servletOutput.print("<html><body><h1>This is the RESPONSE WITH TOKEN</h1><p />");
         	        			
